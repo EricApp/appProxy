@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="appProxy" namespace="/appv1" extends="json-default">
+		<interceptors>
+			<interceptor name="SignInterceptor" class="com.eric.app.interceptor.SignInterceptor"></interceptor>
+			<interceptor-stack name="myInterceptorStack">
+				<interceptor-ref name="SignInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+
+		<!-- version接口 -->
+		<action name="version" class="versionAction">
+			<result type="json">
+				<param name="root">retV</param>
+			</result>
+			<interceptor-ref name="myInterceptorStack"></interceptor-ref>
+		</action>
+		
+		<!-- comment接口 -->
+		<action name="comment_add" class="commentAction" method="updateComment">
+			<result type="json">
+				<param name="root">retV</param>
+			</result>
+			<interceptor-ref name="myInterceptorStack"></interceptor-ref>
+		</action>
+		
+		<action name="comment_update" class="commentAction" method="updateComment">
+			<result type="json">
+				<param name="root">retV</param>
+			</result>
+			<interceptor-ref name="myInterceptorStack"></interceptor-ref>
+		</action>
+		
+		<action name="comment_get" class="commentAction" method="getComment">
+			<result type="json">
+				<param name="root">retV</param>
+			</result>
+			<interceptor-ref name="myInterceptorStack"></interceptor-ref>
+		</action>
+		
+		<!-- delete-->
+		<action name="comment_delete" class="commentAction" method="deleteComment">
+			<result type="json">
+				<param name="root">retV</param>
+			</result>
+			<interceptor-ref name="myInterceptorStack"></interceptor-ref>
+		</action>
+	</package>
+</struts>
